@@ -7,11 +7,13 @@ Least Square
 import numpy as np
 
 
+def compute_mse(y, tx, w):
+    """compute the loss by mse."""
+    e = y - tx.dot(w)
+    mse = e.dot(e) / (2 * len(e))
+    return mse
+
 def least_squares(y, tx):
-    """calculate the least squares."""
-    # ***************************************************
-    # INSERT YOUR CODE HERE
-    # least squares: TODO
-    # returns mse, and optimal weights
-    # ***************************************************
-    raise NotImplementedError
+    """calculate the least squares solution."""
+    w = np.linalg.lstsq(tx, y, rcond=None)[0]
+    return compute_mse(y, tx, w), w
